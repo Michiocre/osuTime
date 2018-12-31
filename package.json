@@ -1,0 +1,28 @@
+{
+  "name": "osutime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michiocre/osuTime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Michiocre/osuTime/issues"
+  },
+  "homepage": "https://github.com/Michiocre/osuTime#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "mocha-jshint": "^2.3.1"
+  }
+}
