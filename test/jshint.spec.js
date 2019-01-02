@@ -1,6 +1,7 @@
 require('mocha-jshint')({
     paths: [
-        'src/'
+        'src/',
+        'test/'
     ],
     pretty: true
 });
