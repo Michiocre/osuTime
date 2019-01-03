@@ -2,10 +2,10 @@
   "name": "osutime",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "start": "node src/index.js"
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
