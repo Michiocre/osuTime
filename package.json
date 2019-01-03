@@ -1,7 +1,7 @@
 {
   "name": "osutime",
   "version": "1.0.0",
-  "description": "",
+  "description": "Yeet",
   "main": "server.js",
   "scripts": {
     "client": "cd client && npm start",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/Michiocre/osuTime.git"
   },
   "author": "Michiocre",
-  "license": "ISC",
+  "license": "Yeet",
   "bugs": {
     "url": "https://github.com/Michiocre/osuTime/issues"
   },
@@ -26,7 +26,15 @@
     "node-fetch": "^2.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.11.1",
+    "eslint-config-react-app": "^3.0.6",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-mocha": "^5.2.0",
+    "eslint-plugin-react": "^7.12.2",
     "mocha": "^5.2.0",
-    "mocha-jshint": "^2.3.1"
+    "mocha-eslint": "^5.0.0"
   }
 }

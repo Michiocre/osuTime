@@ -1,4 +1,3 @@
-/*jshint esversion: 6, node: true, undef: true*/
 /**
 * Converts the dateformat dd-mm-yyyy hr:mi:se into seconds (only the time)
 *
@@ -7,8 +6,9 @@
 * @return {int} The time in seconds
 */
 function dateConvert(date) {
-    let time = date.split(" ")[1];
-    return (time.split(":")[0] * 3600) + (time.split(":")[1] * 60) + (time.split(":")[2] * 1);
+    let time = date.split(' ')[1];
+    let splits = time.split(':');
+    return (splits[0] * 3600) + (splits[1] * 60) + (splits[2] * 1);
 }
 
 /**

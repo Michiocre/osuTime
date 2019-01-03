@@ -1,11 +1,9 @@
-/*jshint esversion: 6, node: true, undef: true*/
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const config = require('../config/config.json');
 const math = require('./math.js');
 
-/* jshint ignore:start */
 app.get('/user/:username', async (req, res) => {
 
     let userRequest = await fetch('https://osu.ppy.sh/api/get_user' + '?' +
@@ -29,7 +27,6 @@ app.get('/user/:username', async (req, res) => {
     //res.send(math.allTimeAverage(request.top));
     res.send(request.top);
 });
-/* jshint ignore:end */
 
 app.listen(8000, () => {
     console.log('Example app listening on port 8000!');
