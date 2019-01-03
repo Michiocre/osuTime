@@ -4,20 +4,24 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "client": "cd client && npm start",
+    "server": "nodemon src/server.js",
     "test": "mocha",
-    "start": "nodemon src/server.js"
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Michiocre/osuTime.git"
   },
-  "author": "",
+  "author": "Michiocre",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Michiocre/osuTime/issues"
   },
   "homepage": "https://github.com/Michiocre/osuTime#readme",
   "dependencies": {
+    "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0"
   },
