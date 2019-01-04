@@ -81,5 +81,5 @@ typings/
 
 
 #My Stuff
-config/
+config.json
 package-lock.json

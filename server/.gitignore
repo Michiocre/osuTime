@@ -78,8 +78,3 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
-
-
-#My Stuff
-config/
-package-lock.json
