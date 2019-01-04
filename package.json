@@ -2,13 +2,13 @@
   "name": "osutime",
   "version": "1.0.0",
   "description": "Yeet",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "nodemon src/server.js",
-    "test": "mocha",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "npm run dev"
+    "server": "cd server && nodemon src/server.js",
+    "test": "cd server && npm test && cd ../client && npm run myTest",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "install-all": "cd server && npm install && cd ../client && npm install"
   },
   "repository": {
     "type": "git",
@@ -21,20 +21,6 @@
   },
   "homepage": "https://github.com/Michiocre/osuTime#readme",
   "dependencies": {
-    "concurrently": "^4.1.0",
-    "express": "^4.16.4",
-    "node-fetch": "^2.3.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.11.1",
-    "eslint-config-react-app": "^3.0.6",
-    "eslint-plugin-flowtype": "^3.2.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-mocha": "^5.2.0",
-    "eslint-plugin-react": "^7.12.2",
-    "mocha": "^5.2.0",
-    "mocha-eslint": "^5.0.0"
+    "concurrently": "^4.1.0"
   }
 }

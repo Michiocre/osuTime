@@ -5,7 +5,7 @@
         "node": true,
         "mocha": true
     },
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "extends": ["eslint:recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -14,7 +14,6 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react",
         "mocha"
     ],
     "rules": {
@@ -37,19 +36,6 @@
         "mocha/no-exclusive-tests": "error",
         "no-console": [
             "warn"
-        ]
-    },
-    "settings": {
-        "react": {
-            "createClass": "createReactClass",
-            "pragma": "React",
-            "version": "16.6",
-            "flowVersion": "0.53"
-        },
-        "propWrapperFunctions": [
-            "forbidExtraProps",
-            {"property": "freeze", "object": "Object"},
-            {"property": "myFavoriteWrapper"}
         ]
     }
 }
