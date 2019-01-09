@@ -24,28 +24,44 @@ app.use(function (req, res, next) {
     next();
 });
 
+//This is how responses look like:
+
+// let responseExample = {
+//     code: 200, //200 succ, 400 err you know the deal
+//     body: {}
+// };
+
 app.get('/user/:username', async (req, res) => {
+    let response = {};
 
     let userRequest = await fetch('https://osu.ppy.sh/api/get_user' + '?' +
         'k=' + config.apiKey + '&' +
         'u=' + req.params.username, {
     });
 
-    let userTopRequest = await fetch('https://osu.ppy.sh/api/get_user_best' + '?' +
-        'k=' + config.apiKey + '&' +
-        'u=' + req.params.username + '&' +
-        'limit=' + '100', {
-    });
+    userRequest = await userRequest.json();
 
-    let request = {
-        user: await userRequest.json(),
-        top: await userTopRequest.json()
-    };
+    if (userRequest[0] !== undefined) {
+        let userTopRequest = await fetch('https://osu.ppy.sh/api/get_user_best' + '?' +
+            'k=' + config.apiKey + '&' +
+            'u=' + req.params.username + '&' +
+            'limit=' + '100', {
+        });
+        userTopRequest = await userTopRequest.json();
 
-    request.top.sort(math.dateCompare);
+        response = {
+            code: 200,
+            body: userTopRequest.sort(math.dateCompare)
+        };
+    } else {
+        response = {
+            code: 404,
+            body: 'User not found'
+        };
+    }
 
     //res.send(math.allTimeAverage(request.top));
-    res.send(request.top);
+    res.send(response);
 });
 
 app.get('/hello', (req, res) => {
