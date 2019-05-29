@@ -9,6 +9,7 @@
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -17,7 +18,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "mocha"
     ],
     "rules": {
         "indent": [
@@ -36,7 +38,11 @@
             "error",
             "always"
         ],
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "mocha/no-exclusive-tests": "error",
+        "no-console": [
+            "warn"
+        ]
     },
     "settings": {
     "react": {

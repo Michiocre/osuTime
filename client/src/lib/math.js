@@ -12,12 +12,12 @@ function dateConvert(date) {
 }
 
 /**
-* Compare function for array.sort
-* Compares the values of two objects, if a < b then -1, if a > b then 1
+* Generate a compare function for an array of objects
+* Returns a function that compares a given object (date is a special case)
 *
 * @author: Michiocre
-* @param {string} property One index of an array
-* @return {int}
+* @param {string} property property of the object
+* @return {function}
 */
 function dynamicSort(property) {
     var sortOrder = 1;
@@ -61,14 +61,12 @@ function timeAverage(top) {
     let diff = 0;
     let time1 = dateConvert(top[0].date);
 
-    console.log(time1);
-
     for (var i = 1; i < top.length; i++) {
         let time = dateConvert(top[i].date);
 
         let localdiff = time - time1;
 
-        if (localdiff >= 43200) { //If the difference is greater then 12hr
+        if (localdiff > 43200) { //If the difference is greater then 12hr
             localdiff = (localdiff - 86400);
         } else if (localdiff < -43200) {
             localdiff = (localdiff + 86400);

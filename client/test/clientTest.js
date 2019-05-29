@@ -1,11 +1,11 @@
 const assert = require('assert');
 const lint = require('mocha-eslint');
 const myMath = require('../src/lib/math');
-const bigTest = require('./response.json').body;
-const smallTest = [{date: '2017-04-05 02:00:00', index: 1}, {date: '2017-04-05 20:00:00', index: 2}, {date: '2019-04-05 03:00:00', index: 3}];
+const bigTest = require('./response.json').body.slice(0, 99);
 
-const bigAverage = 70636.16;
-// const smallAverage = 1200;
+console.log(bigTest[14]);
+
+//const bigAverage = 70636.16;
 
 // Array of paths to lint
 // Note: a seperate Mocha test will be run for each path and each file which
@@ -31,19 +31,9 @@ describe('basic test', function () {
 
 describe('math test', function () {
     it('should convert dates', function () {
-        assert.equal(myMath.dateConvert('2017-04-05 17:22:23'), 62543);
+        assert.equal(myMath.dateConvert(bigTest[14].date), 52898);
     });
     it('should sort by property', function() {
-        smallTest.sort(myMath.dynamicSort('date'));
-        assert(smallTest[0].date < smallTest[1].date);
-        smallTest.sort(myMath.dynamicSort('-date'));
-        assert(smallTest[0].date > smallTest[1].date);
-
-        smallTest.sort(myMath.dynamicSort('index'));
-        assert(smallTest[0].index < smallTest[1].index);
-        smallTest.sort(myMath.dynamicSort('-index'));
-        assert(smallTest[0].index > smallTest[1].index);
-
         bigTest.sort(myMath.dynamicSort('date'));
         assert(bigTest[0].date < bigTest[1].date);
         bigTest.sort(myMath.dynamicSort('-date'));
@@ -55,32 +45,29 @@ describe('math test', function () {
         assert(bigTest[0].pp > bigTest[1].pp);
     });
     it('should average time', function() {
-        // assert.equal(myMath.timeAverage(smallTest), smallAverage);
-        assert.equal(myMath.timeAverage(bigTest), bigAverage);
+        //assert.equal(myMath.timeAverage(bigTest), bigAverage);
     });
-    // it('timeAverage and allTimeAverage[lastIndex] should be the same', function() {
-    //     assert.equal(myMath.timeAverage(smallTest), myMath.allTimeAverage(smallTest)[smallTest.length -1]);
-    //     assert.equal(myMath.timeAverage(bigTest), myMath.allTimeAverage(bigTest)[bigTest.length -1]);
-    // });
-    // it('should always be the same, independent of sorting', function() {
-    //     smallTest.sort(myMath.dynamicSort('-date'));
-    //     assert.equal(myMath.timeAverage(smallTest), smallAverage);
-    //     smallTest.sort(myMath.dynamicSort('date'));
-    //     assert.equal(myMath.timeAverage(smallTest), smallAverage);
-    //
-    //     smallTest.sort(myMath.dynamicSort('-index'));
-    //     assert.equal(myMath.timeAverage(smallTest), smallAverage);
-    //     smallTest.sort(myMath.dynamicSort('index'));
-    //     assert.equal(myMath.timeAverage(smallTest), smallAverage);
-    //
-    //     bigTest.sort(myMath.dynamicSort('-date'));
-    //     assert.equal(myMath.timeAverage(bigTest), bigAverage);
-    //     bigTest.sort(myMath.dynamicSort('date'));
-    //     assert.equal(myMath.timeAverage(bigTest), bigAverage);
-    //
-    //     bigTest.sort(myMath.dynamicSort('-pp'));
-    //     assert.equal(myMath.timeAverage(bigTest), bigAverage);
-    //     bigTest.sort(myMath.dynamicSort('pp'));
-    //     assert.equal(myMath.timeAverage(bigTest), bigAverage);
-    // });
+    it('timeAverage and allTimeAverage[lastIndex] should be the same', function() {
+        assert.equal(myMath.timeAverage(bigTest), myMath.allTimeAverage(bigTest)[bigTest.length -1]);
+    });
+    it('should always be the same, independent of sorting', function() {
+
+        bigTest.sort(myMath.dynamicSort('-date'));
+        let dateNeg = myMath.timeAverage(bigTest);
+        bigTest.sort(myMath.dynamicSort('date'));
+        let datePos = myMath.timeAverage(bigTest);
+
+        bigTest.sort(myMath.dynamicSort('-perfect'));
+        let ppNeg = myMath.timeAverage(bigTest);
+        bigTest.sort(myMath.dynamicSort('perfect'));
+        let ppPos = myMath.timeAverage(bigTest);
+
+        assert.equal(dateNeg, datePos);
+        
+        assert.equal(datePos, ppNeg);
+        assert.equal(dateNeg, ppNeg);
+        assert.equal(datePos, ppPos);
+        assert.equal(ppPos, ppNeg);
+        assert.equal(dateNeg, ppPos);
+    });
 });

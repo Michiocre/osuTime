@@ -67,6 +67,6 @@ app.get('/hello', (req, res) => {
     res.send('Yeet');
 });
 
-app.listen(8000, () => {
-    console.log('Example app listening on port 8000!');
+app.listen(config.port, () => {
+    console.log('Example app listening on port ' + config.port + '!');
 });

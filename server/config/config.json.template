@@ -1,3 +1,4 @@
 {
-    "apiKey": "YOURKEY"
+    "apiKey": "YOURKEY",
+    "port": 8000
 }
