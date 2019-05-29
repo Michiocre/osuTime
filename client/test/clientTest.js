@@ -1,10 +1,7 @@
 const assert = require('assert');
 const lint = require('mocha-eslint');
 const myMath = require('../src/lib/math');
-const bigTest = require('./response.json').body.slice(0, 2);
-
-console.log(bigTest[15]);
-console.log(bigTest[16]);
+const bigTest = require('./response.json').body.slice(0, 100);
 
 //const bigAverage = 70636.16;
 
@@ -58,13 +55,12 @@ describe('math test', function () {
         bigTest.sort(myMath.dynamicSort('date'));
         let datePos = myMath.timeAverage(bigTest);
 
-        bigTest.sort(myMath.dynamicSort('-perfect'));
+        bigTest.sort(myMath.dynamicSort('-pp'));
         let ppNeg = myMath.timeAverage(bigTest);
-        bigTest.sort(myMath.dynamicSort('perfect'));
+        bigTest.sort(myMath.dynamicSort('pp'));
         let ppPos = myMath.timeAverage(bigTest);
 
         assert.equal(dateNeg, datePos);
-        
         assert.equal(datePos, ppNeg);
         assert.equal(dateNeg, ppNeg);
         assert.equal(datePos, ppPos);
