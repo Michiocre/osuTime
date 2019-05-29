@@ -2,13 +2,27 @@ import React, { Component } from 'react';
 import Config from '../config/config.json';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Container} from 'reactstrap';
+import { Line } from 'react-chartjs-2';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            response: ''
+            response: '',
+			chart: {
+				data: {
+					labels: ['Time', 'PP'],
+					datasets: [
+						{
+							
+						}
+					]
+				},
+				options: {
+
+				}
+			}
         };
 
         this.handleSubmit = async e => {
@@ -37,7 +51,7 @@ class Login extends Component {
                     </FormGroup>
                     <Button type="submit">Submit</Button>
                 </Form>
-
+				<Line data={this.state.chart.data} options={this.state.chart.options} height={200}/>
                 <p>{this.state.responseToPost}</p>
             </Container>
         );
