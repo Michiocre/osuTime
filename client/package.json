@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.2.1",
-    "chart.js": "^2.8.0",
+    "mocha": "^6.1.4",
+    "mocha-eslint": "^5.0.0",
     "react": "^16.7.0",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.7.0",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.2",
     "reactstrap": "^7.0.2"
   },
@@ -15,7 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "myTest": "eslint ./src",
+    "myTest": "mocha",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

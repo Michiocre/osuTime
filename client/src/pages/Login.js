@@ -1,59 +1,25 @@
 import React, { Component } from 'react';
-import Config from '../config/config.json';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { Container} from 'reactstrap';
-import { Line } from 'react-chartjs-2';
+import { Link} from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            response: '',
-			chart: {
-				data: {
-					labels: ['Time', 'PP'],
-					datasets: [
-						{
-							
-						}
-					]
-				},
-				options: {
-
-				}
-			}
-        };
-
-        this.handleSubmit = async e => {
-            e.preventDefault();
-            if (this.state.username.trim() !== '') {
-                const response = await fetch(Config.backend + '/user/' + this.state.username.trim(), {
-                    method: 'GET',
-                    header: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const body = await response.text();
-
-                this.setState({responseToPost: body});
-            }
+            username: ''
         };
     }
 
     render() {
         return (
-            <Container>
-                <Form onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                        <Label for="username">Username</Label>
-                        <Input type="text" name="username" id="username" value={this.state.username} onChange={e => this.setState({username: e.target.value})}/>
-                    </FormGroup>
-                    <Button type="submit">Submit</Button>
-                </Form>
-				<Line data={this.state.chart.data} options={this.state.chart.options} height={200}/>
-                <p>{this.state.responseToPost}</p>
-            </Container>
+            <div className="container">
+                <form>
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input type="text" className="form-control" id="username" value={this.state.username} onChange={e => this.setState({username: e.target.value})} />
+                    </div>
+                    <Link to={{pathname: '/main/' + this.state.username}}><button type="submit" className="btn btn-primary">Submit</button></Link>
+                </form>
+            </div>
         );
     }
 }

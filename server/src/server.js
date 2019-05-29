@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const config = require('../config/config.json');
-const math = require('./math.js');
 
 // Add headers
 app.use(function (req, res, next) {
@@ -51,7 +50,7 @@ app.get('/user/:username', async (req, res) => {
 
         response = {
             code: 200,
-            body: userTopRequest.sort(math.dateCompare)
+            body: userTopRequest
         };
     } else {
         response = {

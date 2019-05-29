@@ -13,21 +13,41 @@ function dateConvert(date) {
 
 /**
 * Compare function for array.sort
-* Compares the date values of two objects, if a < b then -1, if a > b then 1
+* Compares the values of two objects, if a < b then -1, if a > b then 1
 *
 * @author: Michiocre
-* @param {object} a One index of an array
-* @param {object} b Another index of an array
+* @param {string} property One index of an array
 * @return {int}
 */
-function dateCompare(a, b) {
-    if (Date.parse(a.date) < Date.parse(b.date)) {
-        return -1;
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if (property[0] === '-') {
+        sortOrder = -1;
+        property = property.substr(1);
     }
-    if (Date.parse(a.date) > Date.parse(b.date)) {
-        return 1;
+    if (property === 'date') {
+        return function(a, b) {
+            let result = 0;
+            if (Date.parse(a[property]) < Date.parse(b[property])) {
+                result = -1;
+            }
+            if (Date.parse(a[property]) > Date.parse(b[property])) {
+                result = 1;
+            }
+            return result * sortOrder;
+        };
+    } else {
+        return function(a, b) {
+            let result = 0;
+            if (a[property] < b[property]) {
+                result = -1;
+            }
+            if (a[property] > b[property]) {
+                result = 1;
+            }
+            return result * sortOrder;
+        };
     }
-    return 0;
 }
 
 /**
@@ -40,6 +60,8 @@ function dateCompare(a, b) {
 function timeAverage(top) {
     let diff = 0;
     let time1 = dateConvert(top[0].date);
+
+    console.log(time1);
 
     for (var i = 1; i < top.length; i++) {
         let time = dateConvert(top[i].date);
@@ -60,6 +82,9 @@ function timeAverage(top) {
     let avr = time1 + normDiff;
     if (avr < 0) {
         avr = 86400 + avr;
+    }
+    if (avr >= 86400) {
+        avr = avr - 86400;
     }
     return avr;
 }
@@ -86,6 +111,6 @@ function allTimeAverage(top) {
 module.exports = {
     timeAverage: timeAverage,
     allTimeAverage: allTimeAverage,
-    dateCompare: dateCompare,
+    dynamicSort: dynamicSort,
     dateConvert: dateConvert
 };

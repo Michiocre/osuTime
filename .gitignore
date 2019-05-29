@@ -83,3 +83,4 @@ typings/
 #My Stuff
 config.json
 package-lock.json
+canvasjs.*
