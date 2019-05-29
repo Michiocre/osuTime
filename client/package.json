@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.2.1",
+    "mocha": "^6.1.4",
+    "mocha-eslint": "^5.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router": "^5.0.0",
@@ -15,7 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "myTest": "eslint ./src",
+    "myTest": "mocha",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
