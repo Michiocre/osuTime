@@ -8,6 +8,7 @@
     "server": "cd server && nodemon src/server.js",
     "test": "cd server && npm test && cd ../client && npm run myTest",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "install": "npm install && npm run install-all",
     "install-all": "cd server && npm install && cd ../client && npm install"
   },
   "repository": {
