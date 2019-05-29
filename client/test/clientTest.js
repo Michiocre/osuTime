@@ -1,9 +1,10 @@
 const assert = require('assert');
 const lint = require('mocha-eslint');
 const myMath = require('../src/lib/math');
-const bigTest = require('./response.json').body.slice(0, 99);
+const bigTest = require('./response.json').body.slice(0, 2);
 
-console.log(bigTest[14]);
+console.log(bigTest[15]);
+console.log(bigTest[16]);
 
 //const bigAverage = 70636.16;
 
@@ -31,7 +32,7 @@ describe('basic test', function () {
 
 describe('math test', function () {
     it('should convert dates', function () {
-        assert.equal(myMath.dateConvert(bigTest[14].date), 52898);
+        assert.equal(myMath.dateConvert(bigTest[0].date), 3000);
     });
     it('should sort by property', function() {
         bigTest.sort(myMath.dynamicSort('date'));

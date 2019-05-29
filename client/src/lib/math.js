@@ -50,6 +50,7 @@ function dynamicSort(property) {
     }
 }
 
+
 /**
 * Calculates the average time of the day, from an array of plays.
 *
@@ -58,33 +59,27 @@ function dynamicSort(property) {
 * @return {int} Average time of the day when play was made
 */
 function timeAverage(top) {
-    let diff = 0;
-    let time1 = dateConvert(top[0].date);
+    let angles = [];
 
-    for (var i = 1; i < top.length; i++) {
-        let time = dateConvert(top[i].date);
-
-        let localdiff = time - time1;
-
-        if (localdiff > 43200) { //If the difference is greater then 12hr
-            localdiff = (localdiff - 86400);
-        } else if (localdiff < -43200) {
-            localdiff = (localdiff + 86400);
-        }
-
-        diff += localdiff;
+    for (let i = 0; i < top.length; i++) {
+        let seconds = dateConvert(top[i].date);
+        angles.push(seconds/240);
     }
 
-    let normDiff = diff/top.length;
+    let sinSum = 0;
+    let cosSum = 0;
+    for (let i = 0; i < angles.length; i++) {
+        sinSum += Math.sin(angles[i] * Math.PI / 180);
+        cosSum += Math.cos(angles[i] * Math.PI / 180); 
+    }
 
-    let avr = time1 + normDiff;
-    if (avr < 0) {
-        avr = 86400 + avr;
+    let angle = Math.atan2(sinSum / angles.length, cosSum / angles.length) * 180 / Math.PI;
+
+    if (angle < 0) {
+        angle += 360;
     }
-    if (avr >= 86400) {
-        avr = avr - 86400;
-    }
-    return avr;
+
+    return angle * 240;
 }
 
 /**
