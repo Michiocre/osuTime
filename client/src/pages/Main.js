@@ -11,16 +11,31 @@ class Main extends Component {
         this.state = {
             username: props.match.params[0],
             scores: [],
-            selectedSortOption: 'date'
+            selectedSortOption: 'date',
+            selectedSortDirection: 'decending'
         };
 
         this.radioChangeHandler = this.radioChangeHandler.bind(this);
     }
 
     radioChangeHandler(event) {
-        this.setState({
-            selectedSortOption: event.target.id
-        });
+
+        switch (event.target.name) {
+            case 'sortRadio':
+                    this.setState({
+                        selectedSortOption: event.target.id
+                    });
+                break;
+
+            case 'ascRadio':
+                    this.setState({
+                        selectedSortDirection: event.target.id
+                    });
+                break;
+
+            default:
+                break;
+        }
     }
 
     async componentDidMount() {
@@ -54,12 +69,17 @@ class Main extends Component {
     }
 
     render() {
-        this.state.scores.sort(myMath.dynamicSort(this.state.selectedSortOption));
+        if (this.state.selectedSortDirection === 'ascending') {
+            this.state.scores.sort(myMath.dynamicSort(this.state.selectedSortOption));
+        } else if (this.state.selectedSortDirection === 'decending') {
+            this.state.scores.sort(myMath.dynamicSort('-' + this.state.selectedSortOption));
+        }
+        
 
-
-        const scores = this.state.scores.map((item) =>
+        const scores = this.state.scores.map((item, key) =>
             <tr key={item.score_id}>
-                <th scope="row">{item.pp}</th>
+                <th scope="row">{key}</th>
+                <td>{item.pp}</td>
                 <td>{item.date}</td>
             </tr>
         );
@@ -149,6 +169,22 @@ class Main extends Component {
                                     Sort by pp
                                 </label>
                             </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="ascRadio" id="ascending"
+                                    checked={this.state.selectedSortDirection === 'ascending'}
+                                    onChange={this.radioChangeHandler}/>
+                                <label className="form-check-label" htmlFor="ascending">
+                                    Ascending
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="radio" name="ascRadio" id="decending"
+                                    checked={this.state.selectedSortDirection === 'decending'}
+                                    onChange={this.radioChangeHandler}/>
+                                <label className="form-check-label" htmlFor="decending">
+                                    Decending
+                                </label>
+                            </div>
                         </form>
                     </div>
                     <div className="col-sm-auto">
@@ -160,6 +196,7 @@ class Main extends Component {
                         <table className="table">
                             <thead>
                                 <tr>
+                                    <th scope="col"> # </th>
                                     <th scope="col">PP</th>
                                     <th scope="col">Date</th>
                                 </tr>
