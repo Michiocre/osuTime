@@ -84,3 +84,4 @@ typings/
 config.json
 package-lock.json
 canvasjs.*
+.vscode/
