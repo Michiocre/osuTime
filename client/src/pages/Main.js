@@ -22,15 +22,15 @@ class Main extends Component {
 
         switch (event.target.name) {
             case 'sortRadio':
-                    this.setState({
-                        selectedSortOption: event.target.id
-                    });
+                this.setState({
+                    selectedSortOption: event.target.id
+                });
                 break;
 
             case 'ascRadio':
-                    this.setState({
-                        selectedSortDirection: event.target.id
-                    });
+                this.setState({
+                    selectedSortDirection: event.target.id
+                });
                 break;
 
             default:
