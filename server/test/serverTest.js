@@ -10,7 +10,7 @@ var paths = [
 ];
 
 var options = {
-    contextName: 'eslint'
+    contextName: 'eslint-server'
 };
 
 // Run the tests
