@@ -10,7 +10,7 @@
     "server": "cd server && nodemon src/server.js",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "build": "cd client && npm run-script build",
-    "serve": "concurrently --kill-others-on-fail \"npm run client-production\" \"npm run server-production\"",
+    "serve": "npm run client-production && npm run server-production",
     "client-production": "cd client && serve -s build",
     "server-production": "cd server && pm2 start src/server.js --name \"osuTime\""
   },
