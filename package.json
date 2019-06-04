@@ -4,11 +4,17 @@
   "description": "Yeet",
   "main": "server/server.js",
   "scripts": {
+    "test": "cd server && npm test && cd ../client && npm run myTest",
+    "install-all": "cd server && npm install && cd ../client && npm install",
+
     "client": "cd client && npm start",
     "server": "cd server && nodemon src/server.js",
-    "test": "cd server && npm test && cd ../client && npm run myTest",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "install-all": "cd server && npm install && cd ../client && npm install"
+
+    "build": "cd client && npm run-script build",
+    "serve": "concurrently --kill-others-on-fail \"npm run client-production\" \"npm run server-production\"",
+    "client-production": "cd client && serve -s build",
+    "server-production": "cd server && npm start"
   },
   "repository": {
     "type": "git",

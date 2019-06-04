@@ -20,7 +20,7 @@ function dateConvert(date) {
 * @return {function}
 */
 function dynamicSort(property) {
-    var sortOrder = 1;
+    let sortOrder = 1;
     if (property[0] === '-') {
         sortOrder = -1;
         property = property.substr(1);
@@ -93,7 +93,7 @@ function allTimeAverage(top) {
     let averages = [];
     let localtop = [];
 
-    for (var i = 0; i < top.length; i++) {
+    for (let i = 0; i < top.length; i++) {
         localtop.push(top[i]);
         averages.push(timeAverage(localtop));
     }

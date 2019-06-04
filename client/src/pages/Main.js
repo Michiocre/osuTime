@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Config from '../config/config.json';
 import CanvasJSReact from '../lib/canvasjs.react';
-var myMath = require('../lib/math');
-//var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+let myMath = require('../lib/math');
+//let CanvasJS = CanvasJSReact.CanvasJS;
+let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Main extends Component {
     constructor(props) {
@@ -87,7 +87,7 @@ class Main extends Component {
         let averages = myMath.allTimeAverage(this.state.scores);
         let dataPoints = [];
 
-        for (var i = 0; i < this.state.scores.length; i++) {
+        for (let i = 0; i < this.state.scores.length; i++) {
             dataPoints[i] = {
                 x: i,
                 y: averages[i],

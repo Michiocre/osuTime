@@ -7,7 +7,11 @@ const config = require('../config/config.json');
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    if (req.headers.origin === 'http://localhost:3000' || req.headers.origin === 'http://localhost:5000') {
+        res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    } else {
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:' + config.port);
+    }
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
