@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "mocha",
-    "start": "node src/server.js"
+    "test": "mocha"
   },
   "dependencies": {
     "express": "^4.17.1",
