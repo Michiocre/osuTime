@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Config from '../config/config.json';
+import Config from '../../config/config.json';
 import CanvasJSReact from '../lib/canvasjs.react';
 let myMath = require('../lib/math');
 //let CanvasJS = CanvasJSReact.CanvasJS;
