@@ -5,12 +5,10 @@
   "main": "server/server.js",
   "scripts": {
     "test": "cd server && npm test && cd ../client && npm test",
-    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
-
+    "install-all": "git config core.hooksPath .githooks && npm install && cd server && npm install && cd ../client && npm install",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "client": "cd client && npm start",
     "server": "cd server && nodemon src/server.js",
-
     "build": "npm run client-build && npm run server-build",
     "client-build": "cd client && npm run-script build",
     "server-build": "cd server && pm2 delete osuTime; pm2 start src/server.js --name \"osuTime\""
