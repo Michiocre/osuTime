@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
-const config = require('../config/config.json');
+const config = require('./config/config.json');
 
 // Add headers
 app.use(function (req, res, next) {
@@ -48,15 +48,11 @@ app.get('/backend/user/:username', async (req, res) => {
         });
         userTopRequest = await userTopRequest.json();
 
-        response = {
-            code: 200,
-            body: userTopRequest
-        };
+        response = userTopRequest;
+        res.status(200);
     } else {
-        response = {
-            code: 404,
-            body: 'User not found'
-        };
+        response = '{"Message":"User not found"}';
+        res.status(404);
     }
 
     //res.send(math.allTimeAverage(request.top));

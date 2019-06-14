@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Config from '../../config/config.json';
+import Config from '../config/config.json';
 import CanvasJSReact from '../lib/canvasjs.react';
+import '../style/Login.css';
+
 let myMath = require('../lib/math');
 //let CanvasJS = CanvasJSReact.CanvasJS;
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -12,7 +14,8 @@ class Main extends Component {
             username: props.match.params[0],
             scores: [],
             selectedSortOption: 'date',
-            selectedSortDirection: 'decending'
+            selectedSortDirection: 'decending',
+            error: 0
         };
 
         this.radioChangeHandler = this.radioChangeHandler.bind(this);
@@ -47,28 +50,40 @@ class Main extends Component {
                         'Content-Type': 'application/json'
                     }
                 });
-                let response = await request.text();
-                response = JSON.parse(response);
-                if (response.code === 200) {
-                    this.setState({scores: response.body});
-                } else {
-                    this.props.history.push({
-                        pathname: '/'
-                    });
+                switch (request.status) {
+                    case 200:                        
+                        this.setState({scores: JSON.parse(await request.text())});
+                        break;
+                    default:
+                        this.setState({error: 2});
+                        break;
                 }
             } else {
-                this.props.history.push({
-                    pathname: '/'
-                });
+                this.setState({error: 1});
             }
         } else {
-            this.props.history.push({
-                pathname: '/'
-            });
+            this.setState({error: 1});
         }
     }
 
     render() {
+        switch (this.state.error) {
+            case 1:
+                this.props.history.push({
+                    pathname: '/'
+                });
+                return null;
+
+            case 2:
+                this.props.history.push({
+                    pathname: '/'
+                });
+                return null;
+        
+            default:
+                break;
+        }
+
         if (this.state.selectedSortDirection === 'ascending') {
             this.state.scores.sort(myMath.dynamicSort(this.state.selectedSortOption));
         } else if (this.state.selectedSortDirection === 'decending') {
