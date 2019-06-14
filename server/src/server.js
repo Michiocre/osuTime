@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 //     body: {}
 // };
 
-app.get('/user/:username', async (req, res) => {
+app.get('/backend/user/:username', async (req, res) => {
     let response = {};
 
     let userRequest = await fetch('https://osu.ppy.sh/api/get_user' + '?' +
@@ -61,10 +61,6 @@ app.get('/user/:username', async (req, res) => {
 
     //res.send(math.allTimeAverage(request.top));
     res.send(response);
-});
-
-app.get('/hello', (req, res) => {
-    res.send('Yeet');
 });
 
 app.listen(config.port, () => {
