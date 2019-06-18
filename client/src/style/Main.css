@@ -1,3 +1,11 @@
-.spinner {
-    
+.vertical-center {
+    min-height: 70%;
+    min-height: 70vh;
+
+    display: flex;
+    align-items: center;
+}
+
+.spinner-row {
+    width: 100%;
 }

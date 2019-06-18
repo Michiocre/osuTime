@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Config from '../config/config.json';
 import CanvasJSReact from '../lib/canvasjs.react';
-import '../style/Login.css';
+import '../style/Main.css';
 
 let myMath = require('../lib/math');
 //let CanvasJS = CanvasJSReact.CanvasJS;
@@ -151,9 +151,9 @@ class Main extends Component {
 
         if (dataPoints.length < 1) {
             return (
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm">
+                <div className="container vertical-center">
+                    <div className="row spinner-row">
+                        <div className="col-sm text-center">
                             <div className="spinner-border" role="status">
                                 <span className="sr-only">Loading...</span>
                             </div>
