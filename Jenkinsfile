@@ -8,8 +8,24 @@ pipeline {
   }
   stages {
     stage('Build') {
-      steps {
-        sh 'npm install'
+      parallel {
+        stage('Install') {
+          steps {
+            sh 'npm install'
+          }
+        }
+        stage('Install Server') {
+          steps {
+            sh 'cd server'
+            sh 'npm install'
+          }
+        }
+        stage('Install Client') {
+          steps {
+            sh 'cd client'
+            sh 'npm install'
+          }
+        }
       }
     }
   }
