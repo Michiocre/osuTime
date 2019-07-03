@@ -7,7 +7,7 @@ pipeline {
 
   }
   stages {
-    stage('Build') {
+    stage('Install') {
       parallel {
         stage('Install') {
           steps {
@@ -24,6 +24,25 @@ pipeline {
             sh 'cd client && npm install'
           }
         }
+      }
+    }
+    stage('Test') {
+      parallel {
+        stage('Test Server') {
+          steps {
+            sh 'cd server && npm test'
+          }
+        }
+        stage('Test Client') {
+          steps {
+            sh 'cd client && npm test'
+          }
+        }
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'cd client && npm run build'
       }
     }
   }
