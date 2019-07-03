@@ -16,14 +16,12 @@ pipeline {
         }
         stage('Install Server') {
           steps {
-            sh 'cd server'
-            sh 'npm install'
+            sh 'cd server && npm install'
           }
         }
         stage('Install Client') {
           steps {
-            sh 'cd client'
-            sh 'npm install'
+            sh 'cd client && npm install'
           }
         }
       }
