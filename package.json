@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Yeet",
   "main": "server/server.js",
-  "homepage": "/osuTime/",
+  "homepage": ".",
   "scripts": {
     "test": "cd server && npm test && cd ../client && npm test",
     "install-all": "git config core.hooksPath .githooks && npm install && cd server && npm install && cd ../client && npm install",
@@ -13,7 +13,7 @@
     "build": "npm run client-build && npm run server-build",
     "client-build": "cd client && npm run-script build",
     "server-build": "cd server && pm2 delete osuTime; pm2 start src/server.js --name \"osuTime\"",
-    "serve": "cd clientvis && serve"
+    "serve": "cd client/build && serve"
   },
   "repository": {
     "type": "git",
