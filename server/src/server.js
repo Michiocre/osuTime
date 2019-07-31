@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 //     body: {}
 // };
 
-app.get('/backend/user/:username', async (req, res) => {
+app.get('/osuTime/backend/user/:username', async (req, res) => {
     let response = {};
 
     let userRequest = await fetch('https://osu.ppy.sh/api/get_user' + '?' +
