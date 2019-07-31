@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Yeet",
   "main": "server/server.js",
+  "homepage": "/osuTime/",
   "scripts": {
     "test": "cd server && npm test && cd ../client && npm test",
     "install-all": "git config core.hooksPath .githooks && npm install && cd server && npm install && cd ../client && npm install",
@@ -23,7 +24,6 @@
   "bugs": {
     "url": "https://github.com/Michiocre/osuTime/issues"
   },
-  "homepage": "https://github.com/Michiocre/osuTime#readme",
   "dependencies": {},
   "devDependencies": {
     "concurrently": "^4.1.0",
