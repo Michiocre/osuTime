@@ -79,7 +79,7 @@ app.post('/osuTime/backend/gitHook', function (req, res) {
 });
 
 function deploy(res){
-    childProcess.exec('ls', function(err){
+    childProcess.exec('touch test.txt', function(err){
         if (err) {
             console.error(err);
             return res.send(500);
