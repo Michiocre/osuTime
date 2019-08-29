@@ -76,7 +76,7 @@ app.post('/osuTime/backend/gitHook', function (req, res) {
 });
 
 function deploy(res){
-    childProcess.exec('../deploy.sh', function(err){
+    childProcess.exec('cd ../ && ./deploy.sh', function(err){
         if (err) {
             console.error(err);
             return res.sendStatus(500);
