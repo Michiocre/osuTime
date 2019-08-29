@@ -76,12 +76,12 @@ app.post('/osuTime/backend/gitHook', function (req, res) {
 });
 
 function deploy(res){
+    res.sendStatus(200);
     childProcess.exec('cd ../ && ./deploy.sh', function(err){
         if (err) {
             console.error(err);
             return res.sendStatus(500);
         }
-        res.sendStatus(200);
     });
 }
 
