@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const config = require('../config/config.json');
+var childProcess = require('child_process');
 
 // Add headers
 app.use(function (req, res, next) {
@@ -66,6 +67,25 @@ app.get('/user/:username', async (req, res) => {
 app.get('/hello', (req, res) => {
     res.send('Yeet');
 });
+
+app.post('gitHook', function (req, res) {
+    var sender = req.body.sender;
+    var branch = req.body.ref;
+
+    if(branch.indexOf('master') > -1 && sender.login === 'Michiocre'){
+        deploy(res);
+    }
+});
+
+function deploy(res){
+    childProcess.exec('cd /home/web/osuTime && ./deploy.sh', function(err){
+        if (err) {
+            console.error(err);
+            return res.send(500);
+        }
+        res.send(200);
+    });
+}
 
 app.listen(config.port, () => {
     console.log('Example app listening on port ' + config.port + '!');
