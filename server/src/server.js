@@ -64,7 +64,7 @@ app.get('/osuTime/backend/user/:username', async (req, res) => {
 });
 
 app.get('/osuTime/backend/hello', (req, res) => {
-    res.send('Yeet');
+    res.send('Yeet 2 electic boogalo');
 });
 
 app.post('/osuTime/backend/gitHook', function (req, res) {
