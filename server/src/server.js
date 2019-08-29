@@ -69,7 +69,7 @@ app.post('/osuTime/backend/gitHook', function (req, res) {
     var sender = req.sender;
     var branch = req.ref;
 
-    if(branch.indexOf('master') > -1 && sender.login === 'Michiocre'){
+    if(branch == 'refs/heads/master' > -1 && sender.login === 'Michiocre'){
         deploy(res);
     }
 });
