@@ -5,6 +5,8 @@ const config = require('./config/config.json');
 const childProcess = require('child_process');
 const bodyParser = require('body-parser')
 
+app.use(bodyParser.json());
+
 // Add headers
 app.use(function (req, res, next) {
 
