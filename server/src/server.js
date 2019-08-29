@@ -60,11 +60,12 @@ app.get('/osuTime/backend/user/:username', async (req, res) => {
     res.send(response);
 });
 
-app.get('/hello', (req, res) => {
+app.get('/osuTime/backend/hello', (req, res) => {
     res.send('Yeet');
 });
 
-app.post('gitHook', function (req, res) {
+app.post('/osuTime/backend/gitHook', function (req, res) {
+    console.log(req);
     var sender = req.body.sender;
     var branch = req.body.ref;
 
