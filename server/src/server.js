@@ -70,21 +70,18 @@ app.get('/osuTime/backend/hello', (req, res) => {
 app.post('/osuTime/backend/gitHook', function (req, res) {
     var sender = req.body.sender;
     var branch = req.body.ref;
-    console.log('Got the hook');
-    console.log(req.body);
     if(branch === 'refs/heads/master' && sender.login === 'Michiocre'){
         deploy(res);
-        console.log('Everything done');
     }
 });
 
 function deploy(res){
-    childProcess.exec('touch test.txt', function(err){
+    childProcess.exec('../deploy.sh', function(err){
         if (err) {
             console.error(err);
-            return res.send(500);
+            return res.sendStatus(500);
         }
-        res.send(200);
+        res.sendStatus(200);
     });
 }
 
