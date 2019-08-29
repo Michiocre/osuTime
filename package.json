@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "Yeet",
   "main": "server/server.js",
+  "homepage": ".",
   "scripts": {
     "test": "cd server && npm test && cd ../client && npm test",
-    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
-
+    "install-all": "git config core.hooksPath .githooks && npm install && cd server && npm install && cd ../client && npm install",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "client": "cd client && npm start",
     "server": "cd server && nodemon src/server.js",
-
     "build": "npm run client-build && npm run server-build",
     "client-build": "cd client && npm run-script build",
-    "server-build": "cd server && pm2 delete osuTime; pm2 start src/server.js --name \"osuTime\""
+    "server-build": "cd server && pm2 delete osuTime; pm2 start src/server.js --name \"osuTime\"",
+    "serve": "cd client/build && serve"
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,9 @@
   "bugs": {
     "url": "https://github.com/Michiocre/osuTime/issues"
   },
-  "homepage": "https://github.com/Michiocre/osuTime#readme",
   "dependencies": {},
   "devDependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "pm2": "^3.5.1"
   }
 }

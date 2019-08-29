@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
-const config = require('../config/config.json');
+const config = require('./config/config.json');
 var childProcess = require('child_process');
 
 // Add headers
@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 //     body: {}
 // };
 
-app.get('/user/:username', async (req, res) => {
+app.get('/osuTime/backend/user/:username', async (req, res) => {
     let response = {};
 
     let userRequest = await fetch('https://osu.ppy.sh/api/get_user' + '?' +
@@ -49,15 +49,11 @@ app.get('/user/:username', async (req, res) => {
         });
         userTopRequest = await userTopRequest.json();
 
-        response = {
-            code: 200,
-            body: userTopRequest
-        };
+        response = userTopRequest;
+        res.status(200);
     } else {
-        response = {
-            code: 404,
-            body: 'User not found'
-        };
+        response = '{"Message":"User not found"}';
+        res.status(404);
     }
 
     //res.send(math.allTimeAverage(request.top));

@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const routing = (
-    <Router>
+    <Router basename={'/osuTime'}> 
         <div>
             <Route exact path="/" component={Login} />
             <Route path="/main/*" component={Main} />
