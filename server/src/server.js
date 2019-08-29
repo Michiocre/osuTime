@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const config = require('./config/config.json');
-var childProcess = require('child_process');
+const childProcess = require('child_process');
+const bodyParser = require('body-parser')
 
 // Add headers
 app.use(function (req, res, next) {
@@ -65,10 +66,10 @@ app.get('/osuTime/backend/hello', (req, res) => {
 });
 
 app.post('/osuTime/backend/gitHook', function (req, res) {
-    var sender = req.sender;
-    var branch = req.ref;
+    var sender = req.body.sender;
+    var branch = req.body.ref;
     console.log('Got the hook');
-    console.log(req);
+    console.log(req.body);
     if(branch === 'refs/heads/master' && sender.login === 'Michiocre'){
         deploy(res);
         console.log('Everything done');
