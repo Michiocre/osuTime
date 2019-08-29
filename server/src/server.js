@@ -66,8 +66,8 @@ app.get('/osuTime/backend/hello', (req, res) => {
 
 app.post('/osuTime/backend/gitHook', function (req, res) {
     console.log(req);
-    var sender = req.body.sender;
-    var branch = req.body.ref;
+    var sender = req.sender;
+    var branch = req.ref;
 
     if(branch.indexOf('master') > -1 && sender.login === 'Michiocre'){
         deploy(res);
