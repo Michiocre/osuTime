@@ -68,6 +68,7 @@ app.post('/osuTime/backend/gitHook', function (req, res) {
     var sender = req.sender;
     var branch = req.ref;
     console.log('Got the hook');
+    console.log(req);
     if(branch === 'refs/heads/master' && sender.login === 'Michiocre'){
         deploy(res);
         console.log('Everything done');
