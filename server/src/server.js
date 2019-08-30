@@ -2,10 +2,6 @@ const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const config = require('./config/config.json');
-const childProcess = require('child_process');
-const bodyParser = require('body-parser')
-
-app.use(bodyParser.json());
 
 // Add headers
 app.use(function (req, res, next) {
@@ -66,24 +62,6 @@ app.get('/osuTime/backend/user/:username', async (req, res) => {
 app.get('/osuTime/backend/hello', (req, res) => {
     res.send('Yeet Yoot Yuut Yiit');
 });
-
-app.post('/osuTime/backend/gitHook', function (req, res) {
-    var sender = req.body.sender;
-    var branch = req.body.ref;
-    if(branch === 'refs/heads/master' && sender.login === 'Michiocre'){
-        deploy(res);
-    }
-});
-
-function deploy(res){
-    res.sendStatus(200);
-    childProcess.exec('cd ../ && ./deploy.sh', function(err){
-        if (err) {
-            console.error(err);
-            return res.sendStatus(500);
-        }
-    });
-}
 
 app.listen(config.port, () => {
     console.log('Example app listening on port ' + config.port + '!');
